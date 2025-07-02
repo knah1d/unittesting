@@ -49,5 +49,44 @@ public class ArithmeticOperationsTest {
     public void testMultiplyWithZero() {
         assertEquals(0, arithmetic.multiply(5, 0));
         assertEquals(0, arithmetic.multiply(0, 5));
+        assertEquals(0, arithmetic.multiply(0, 0));
+    }
+
+    @Test
+    public void testMultiplyZeroFirstOperand() {
+        // Test when x is 0 but y is not 0 - this covers the x <= Integer.MAX_VALUE / y
+        // branch
+        assertEquals(0, arithmetic.multiply(0, 10));
+        assertEquals(0, arithmetic.multiply(0, 1));
+        assertEquals(0, arithmetic.multiply(0, Integer.MAX_VALUE));
+    }
+
+    @Test
+    public void testMultiplyBothNegative() {
+        // Test both operands negative to cover all branches of x < 0 || y < 0
+        try {
+            arithmetic.multiply(-1, -1);
+            fail("Should throw IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            // Expected
+        }
+    }
+
+    @Test
+    public void testMultiplyEdgeCases() {
+        // Test the boundary condition in the overflow check
+        // This tests the condition x <= Integer.MAX_VALUE / y more thoroughly
+        assertEquals(1, arithmetic.multiply(1, 1));
+        assertEquals(2, arithmetic.multiply(1, 2));
+
+        // Test a case right at the boundary of overflow
+        int maxSqrt = (int) Math.sqrt(Integer.MAX_VALUE);
+        arithmetic.multiply(maxSqrt, maxSqrt); // Should not overflow
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testMultiplySecondOperandNegative() {
+        // Test when second operand is negative - covers y < 0 part of the condition
+        arithmetic.multiply(3, -2);
     }
 }
