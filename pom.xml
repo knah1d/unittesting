@@ -32,6 +32,14 @@
             <version>2.27.0</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-parent</artifactId>
+            <version>1.1.10</version>
+            <type>pom</type>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -58,6 +66,21 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.15.2</version>
+                <configuration>
+                    <targetClasses>
+                        <param>io.*</param>
+                        <param>math.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>io.*Test</param>
+                        <param>math.*Test</param>
+                </targetTests>
+                </configuration>
             </plugin>
 
             <!-- Optional: Coveralls plugin (if you're using it) -->
