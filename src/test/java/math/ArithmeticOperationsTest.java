@@ -89,4 +89,15 @@ public class ArithmeticOperationsTest {
         // Test when second operand is negative - covers y < 0 part of the condition
         arithmetic.multiply(3, -2);
     }
+
+    @Test
+    public void testMultiplyExactBoundaryCondition() {
+        int y = 1000;
+        int x = Integer.MAX_VALUE / y; 
+
+
+        int result = arithmetic.multiply(x, y);
+        assertTrue("Result should be positive", result > 0);
+        assertTrue("Result should be close to MAX_VALUE", result >= Integer.MAX_VALUE - y);
+    }
 }

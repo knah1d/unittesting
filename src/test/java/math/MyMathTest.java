@@ -66,4 +66,14 @@ public class MyMathTest {
     public void testIsPrimeBelowTwo() {
         math.isPrime(1);
     }
+
+    @Test
+    public void testFactorialBoundaryCondition() {
+    
+        int result = math.factorial(12);
+        assertEquals(479001600, result); 
+
+    
+        assertEquals(2, math.factorial(2));
+    }
 }
