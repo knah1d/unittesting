@@ -1,9 +1,9 @@
 package io;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.File;
@@ -15,14 +15,14 @@ public class FileIOTest {
     private final PrintStream originalOut = System.out;
     private final PrintStream originalErr = System.err;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         fileIO = new FileIO();
         System.out.println("Setting up FileIOTest");
         System.setErr(new PrintStream(outContent));
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         fileIO = null;
         System.out.println("Tearing down FileIOTest");
@@ -30,9 +30,9 @@ public class FileIOTest {
         System.setErr(originalErr);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testReadFileNonExistent() {
-        fileIO.readFile("nonexistent.txt");
+        assertThrows(IllegalArgumentException.class, () -> fileIO.readFile("nonexistent.txt"));
     }
 
     @Test
