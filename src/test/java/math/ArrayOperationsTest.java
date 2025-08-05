@@ -1,8 +1,8 @@
 package math;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import io.FileIO;
 import java.io.File;
 import java.io.PrintWriter;
@@ -13,7 +13,7 @@ public class ArrayOperationsTest {
     private MyMath myMath;
     private String testFilePath;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         arrayOps = new ArrayOperations();
         fileIO = new FileIO();
