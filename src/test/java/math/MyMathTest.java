@@ -1,20 +1,20 @@
 package math;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 
 public class MyMathTest {
     private MyMath math;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         math = new MyMath();
         System.out.println("Setting up MyMathTest");
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         math = null;
         System.out.println("Tearing down MyMathTest");
@@ -36,14 +36,14 @@ public class MyMathTest {
         assertEquals(3628800, math.factorial(10));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testFactorialNegative() {
-        math.factorial(-1);
+        assertThrows(IllegalArgumentException.class, () -> math.factorial(-1));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testFactorialTooLarge() {
-        math.factorial(13);
+        assertThrows(IllegalArgumentException.class, () -> math.factorial(13));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class MyMathTest {
         assertFalse(math.isPrime(9));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testIsPrimeBelowTwo() {
-        math.isPrime(1);
+        assertThrows(IllegalArgumentException.class, () -> math.isPrime(1));
     }
 
     @Test
