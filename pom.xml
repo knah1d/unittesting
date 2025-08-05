@@ -17,14 +17,13 @@
     </properties>
 
     <dependencies>
-        <!-- JUnit 4 for Unit Testing -->
+        <!-- JUnit 5 for unit testing -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.13.4</version>
             <scope>test</scope>
         </dependency>
-
         <!-- Mockito for mocking -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -39,6 +38,7 @@
             <version>1.1.10</version>
             <type>pom</type>
         </dependency>
+
 
     </dependencies>
 
@@ -57,7 +57,7 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- Generate report after test -->
+                    <!-- Generate code coverage report -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
